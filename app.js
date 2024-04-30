@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override');
 const Campground = require('./models/campground')
+const passport = require('passport');
+// const LocalStrategy = require('passport-local');
 
 mongoose.connect('mongodb://localhost:27017/dev-journey', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -14,11 +17,16 @@ db.once("open", () => {
 
 const app = express();
 
-app.set('view engine','ejs');
+app.engine('ejs', ejsMate)
+app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'views'))
 
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'));
+
+// app.use(passport.initialize());
+// app.use(passport.session());
+
 
 app.get('/' ,(req,res) => {
     res.render('home')
