@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
-const passport = require('passport');
-const { estimatedDocumentCount } = require('./campground');
+// const passport = require('passport');
+// const { estimatedDocumentCount } = require('./campground');
 
 const UserSchema = new Schema({
     email:{
